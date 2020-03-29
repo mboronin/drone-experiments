@@ -1,5 +1,8 @@
 language: go
 
+env:
+  - REPO=mboronin/travis
+
 services:
   - docker
 
