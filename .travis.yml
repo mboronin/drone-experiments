@@ -13,5 +13,5 @@ script:
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
   - docker build -f Dockerfile -t $REPO:$TRAVIS_COMMIT .
-  - docker tag $REPO:$COMMIT $REPO:$TAG
+  - docker tag $REPO:$COMMIT $REPO:$TRAVIS_COMMIT
   - docker push $REPO
