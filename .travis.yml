@@ -1,8 +1,7 @@
 language: go
 
 env:
-  - DOCKER_USER=mboronin
-  - REPO=mboronin/travis
+  - DOCKER_USER=mboronin REPO=mboronin/travis
 
 services:
   - docker
