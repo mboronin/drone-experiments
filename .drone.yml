@@ -9,13 +9,11 @@ steps:
 - name: build
   image: golang:1.10-alpine
   commands:
-   - "go build -o ./myapp"
-- name: publish
-  image: plugins/docker
+   - "go build -o ./myapp" 
+- name: publish  
+  image: plugins/gcr
   settings:
-   repo: mboronin/drone
-   tags: [ "${DRONE_COMMIT_SHA:0:7}","latest" ]
-   username:
-     from_secret: docker_username
-   password:
-     from_secret: docker_password
+    repo: eu.gcr.io/king-up-prod/go-sample-app
+    tags: latest
+    json_key: 
+      from_secret: google_credentials
