@@ -1,0 +1,22 @@
+  
+stages:
+- name: Build
+  steps:
+  - runScriptConfig:
+      image: golang:1.11
+      shellScript: |-
+        mkdir -p /go/src/github.int.midasplayer.com/mikhail-boronin/
+        ln -s `pwd` /go/src/github.int.midasplayer.com/mikhail-boronin/sample-go-drone-app
+        cd /go/src/github.int.midasplayer.com/mikhail-boronin/sample-go-drone-app
+        go build -o ./myapp
+        go test -cover
+- name: Publish
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: example-helloworld:${CICD_EXECUTION_SEQUENCE}
+- name: Deploy
+  steps:
+  - applyYamlConfig:
+      path: ./deployment.yaml
