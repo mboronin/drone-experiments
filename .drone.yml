@@ -13,7 +13,7 @@ steps:
 - name: publish
   image: plugins/docker
   settings:
-   repo: eu.gcr.io/king-up-prod/portal-sample-app 
+   repo: mboronin/drone
    tags: [ "${DRONE_COMMIT_SHA:0:7}","latest" ]
    username:
      from_secret: docker_username
